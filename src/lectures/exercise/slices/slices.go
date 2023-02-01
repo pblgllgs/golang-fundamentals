@@ -14,9 +14,27 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Part string
 
+func printParts(slice []Part) {
+	for i := 0; i < len(slice); i++ {
+		element := slice[i]
+		fmt.Println(element)
+	}
+}
+
 func main() {
+	assemblyLine := []Part{"motor", "alas", "cabina"}
+	fmt.Println("---Primera revisión---")
+	printParts(assemblyLine)
+	assemblyLine = append(assemblyLine, "pods", "misiles")
+	fmt.Println("---Segunda revisión---")
+	printParts(assemblyLine)
+	lastParts := assemblyLine[3:]
+	fmt.Println("---Última revisión---")
+	printParts(lastParts)
 }
