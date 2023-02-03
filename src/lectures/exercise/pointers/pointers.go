@@ -18,6 +18,48 @@ package main
 
 import "fmt"
 
+type Item struct {
+	name  string
+	state bool
+}
+
+func desactivate(item *Item) {
+	item.state = false
+}
+
+func desactivateAll(items *[4]Item) {
+	for i := 0; i < len(*items); i++ {
+		items[i].state = false
+	}
+}
+
 func main() {
 
+	milk := Item{
+		name:  "milk",
+		state: true}
+
+	cookie := Item{
+		name:  "cookie",
+		state: false}
+
+	tomato := Item{
+		name:  "tomato",
+		state: true}
+
+	meat := Item{
+		name:  "meat",
+		state: true}
+
+	items := [4]Item{milk, cookie, tomato, meat}
+
+	fmt.Println(items)
+
+	desactivate(&items[3])
+
+	fmt.Println(items)
+
+	desactivateAll(&items)
+
+	fmt.Println(items)
 }
