@@ -16,12 +16,39 @@ package main
 
 import "fmt"
 
+type Operation int
+
+const (
+	Add Operation = iota
+	Sub
+	Mul
+	Div
+)
+
+func (c Operation) calculate(a, b int) int {
+	switch c {
+	case Add:
+		return a + b
+	case Sub:
+		return a - b
+	case Mul:
+		return a * b
+	case Div:
+		return a / b
+	}
+	panic("unhandled operation")
+}
+
 func main() {
+	add := Operation(Add)
 	fmt.Println(add.calculate(2, 2)) // = 4
 
+	sub := Operation(Sub)
 	fmt.Println(sub.calculate(10, 3)) // = 7
 
+	mul := Operation(Mul)
 	fmt.Println(mul.calculate(3, 3)) // = 9
 
+	div := Operation(Div)
 	fmt.Println(div.calculate(100, 2)) // = 50
 }
