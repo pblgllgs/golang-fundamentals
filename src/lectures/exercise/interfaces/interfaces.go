@@ -21,6 +21,41 @@ package main
 
 import "fmt"
 
-func main() {
+type Selector interface {
+	SelectLiftBySize()
+}
 
+type Vehicle struct {
+	size      string
+	modelName string
+}
+
+func (v Vehicle) SelectLiftBySize() {
+	if v.size == "motorcicle" {
+		fmt.Printf("%v is the vehicle type and %v is her model name, use small lifts \n", v.size, v.modelName)
+	} else if v.size == "car" {
+		fmt.Printf("%v is the vehicle type and %v is her model name, use standad lifts \n", v.size, v.modelName)
+	} else {
+		fmt.Printf("%v is the vehicle and %v is her model name, use large lifts \n", v.size, v.modelName)
+	}
+
+}
+
+func process(vehicles []Selector) {
+	fmt.Println("Proccesing:")
+	for i := 0; i < len(vehicles); i++ {
+		vehicle := vehicles[i]
+		fmt.Printf("--Vehicle: %v--\n", vehicle)
+		vehicle.SelectLiftBySize()
+	}
+	fmt.Println()
+}
+
+func main() {
+	vehicles := []Selector{
+		Vehicle{size: "motorcicle", modelName: "a400m"},
+		Vehicle{size: "truck", modelName: "5000"},
+		Vehicle{size: "car", modelName: "A4a1"},
+	}
+	process(vehicles)
 }
